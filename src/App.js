@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'; // Added useRef import
+import React, { useState, useRef } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import IconSection from './components/IconSection/IconSection';
 import StageSection from './components/StageSection/StageSection';
@@ -11,12 +11,9 @@ import './App.css';
 function App() {
   const [showPreview, setShowPreview] = useState(false);
   const [addedItems, setAddedItems] = useState([]);
-  const stageRefs = useRef({
-    div: null,
-    stage: null
-  });
+  const stageRef = useRef(null);
 
-  // Defined handleAddToCanvas function
+  // Add template image
   const handleAddToCanvas = (icon) => {
     setAddedItems(prev => [
       ...prev,
@@ -34,6 +31,11 @@ function App() {
     ]);
   };
 
+  // Handle uploaded images
+  const handleUploadImage = (newImage) => {
+    setAddedItems(prev => [...prev, newImage]);
+  };
+
   return (
     <ThemeProvider>
       <main>
@@ -42,16 +44,19 @@ function App() {
           <StageSection 
             addedItems={addedItems} 
             setAddedItems={setAddedItems} 
-            ref={stageRefs}
+            ref={stageRef}
           />
         </div>
-        <ItemTab onPreviewClick={() => setShowPreview(true)} />
+        <ItemTab 
+          onPreviewClick={() => setShowPreview(true)}
+          onUploadImage={handleUploadImage}
+        />
       </main>
 
       <PreviewModal 
         isOpen={showPreview} 
         onClose={() => setShowPreview(false)}
-        stageRef={stageRefs}
+        stageRef={stageRef}
       />
     </ThemeProvider>
   );
