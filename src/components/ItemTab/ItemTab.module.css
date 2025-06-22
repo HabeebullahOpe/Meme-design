@@ -1,0 +1,29 @@
+/* src/components/ItemTab/ItemTab.module.css */
+.itemTab {
+    width: 100%;
+}
+
+.itemTab ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.itemTab ul li {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--mid);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.itemTab ul li:hover {
+    transform: scale(1.05);
+}
+
+.itemTab ul li img {
+    width: 32px;
+}

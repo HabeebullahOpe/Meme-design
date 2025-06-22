@@ -1,0 +1,18 @@
+/* src/components/StageSection/StageSection.module.css */
+.stageSection {
+    flex-grow: 1;
+    height: 100%;
+    padding: 5px;
+    border-radius: 10px 0 0 10px;
+    background: var(--background-color);
+    background-color: gold;
+}
+
+.canvas {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--white);
+    background-color: red;
+}

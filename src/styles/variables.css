@@ -1,0 +1,18 @@
+/* src/styles/variables.css */
+:root {
+    --primary-color: #FF8C00;
+    --background-color: #F5F5F5;
+    --white: #fff;
+    --mid: #EBEBEB; 
+    --text-color: #222222;
+    --secondary-color: #FFD700;
+    --border-color: #DDDDDD;
+}
+
+.dark-mode {
+    --primary-color: #FF8C00;
+    --background-color: #121212;
+    --text-color: #E1E1E1;
+    --secondary-color: #FF4500;
+    --border-color: #444444;
+}
