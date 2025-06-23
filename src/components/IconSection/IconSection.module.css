@@ -1,132 +1,45 @@
 /* src/components/IconSection/IconSection.module.css */
 .iconSection {
-    position: relative;
-    background: var(--white);
-    height: 100%;
-    overflow: hidden;
-    transition: width 0.3s ease-in-out;
-    background-color: red;
-    display: flex;
-    align-items: center;
-}
-
-/* Mobile controls */
-.iconControl {
-    position: sticky;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    z-index: 2;
-    background: var(--white);
-    background-color: red;
-}
-
-.iconControl span {
-    width: 30px;
-    height: 30px;
-    padding: 3px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    cursor: pointer;
-}
-
-.iconControl span img {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Desktop scroll buttons */
-.scrollButton {
-    position: absolute;
-    display:flex;
-    align-items: center;
-    justify-self: center;
-    width: 50px;
-    height: 30px;
-    padding: 3px;
-    background: var(--primary-color);
-    border: none;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
-}
-
-.scrollButton img {
-    width: 20px;
-    height: 20px;
-}
-
-.scrollUp {
-    top: 0;
-}
-
-.scrollDown {
-    bottom: 0;
 }
 
 /* Icon list container */
 .iconListContainer {
-    height: calc(100% - 60px); /* Account for buttons */
-    overflow-y: auto;
-    padding: 0 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    max-width: 500px;
+    border-radius: 20px 20px 0 0;;
+    background-color: blueviolet;
 }
 
-.iconListContainer::-webkit-scrollbar{
-    display: none
+.iconSection .iconListContainer .drag{
+    width: 60px;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: green;
 }
 
-
-/* Mobile specific */
-@media (max-width: 399px) {
-    .iconListContainer {
-        height: calc(100% - 40px); /* Account for mobile controls */
-    }
-    .scrollButton {
-        display: none;
-    }
-}
-
-/* Desktop specific */
-@media (min-width: 400px) {
-    .iconControl {
-        display: none;
-    }
-    /* .iconListContainer {
-        scrollbar-width: thin;
-        scrollbar-color: var(--primary-color) var(--background-color);
-    } */
-    /* .iconListContainer::-webkit-scrollbar {
-        width: 4px;
-    }
-    .iconListContainer::-webkit-scrollbar-track {
-        background: var(--background-color);
-    }
-    .iconListContainer::-webkit-scrollbar-thumb {
-        background-color: var(--primary-color);
-        border-radius: 2px;
-    } */
-}
-
-/* Shared icon list styles */
 .iconListContainer ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2px;
+    justify-content: center;
+    gap: 5px;
     height: 100%;
     background-color: gold;
 }
 
 .iconListContainer ul li {
-    width: 76px;
+    width: 80px;
     height: 80px;
     padding: 5px;
     border-radius: 5px;

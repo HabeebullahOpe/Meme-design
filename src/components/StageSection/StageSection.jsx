@@ -110,7 +110,8 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f0f0f0'
+        // backgroundColor: '#f0f0f0'
+        backgroundColor: 'orange'
       }}
     >
       <Stage
@@ -119,8 +120,8 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
         height={scaledSize.height}
         onMouseDown={handleSelect}
         style={{
-          backgroundColor: '#ffffff',
-          boxShadow: '0 0 15px rgba(0,0,0,0.1)'
+          backgroundColor: 'dodgerblue',
+          boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)'
         }}
       >
         <Layer>

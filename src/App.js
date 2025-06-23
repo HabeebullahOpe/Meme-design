@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import IconSection from './components/IconSection/IconSection';
-import StageSection from './components/StageSection/StageSection';
-import ItemTab from './components/ItemTab/ItemTab';
-import PreviewModal from './components/PreviewModal/PreviewModal';
-import './styles/globals.css';
-import './styles/variables.css';
-import './App.css';
+import React, { useState, useRef } from "react";
+import { ThemeProvider } from "./context/ThemeContext";
+import IconSection from "./components/IconSection/IconSection";
+import StageSection from "./components/StageSection/StageSection";
+import ItemTab from "./components/ItemTab/ItemTab";
+import PreviewModal from "./components/PreviewModal/PreviewModal";
+import "./styles/globals.css";
+import "./styles/variables.css";
+import "./App.css";
 
 function App() {
   const [showPreview, setShowPreview] = useState(false);
@@ -15,7 +15,7 @@ function App() {
 
   // Add template image
   const handleAddToCanvas = (icon) => {
-    setAddedItems(prev => [
+    setAddedItems((prev) => [
       ...prev,
       {
         ...icon,
@@ -26,35 +26,36 @@ function App() {
         height: 100,
         rotation: 0,
         scaleX: 1,
-        scaleY: 1
-      }
+        scaleY: 1,
+      },
     ]);
   };
 
   // Handle uploaded images
   const handleUploadImage = (newImage) => {
-    setAddedItems(prev => [...prev, newImage]);
+    setAddedItems((prev) => [...prev, newImage]);
   };
 
   return (
     <ThemeProvider>
       <main>
-        <div className="container">
-          <IconSection onAddToCanvas={handleAddToCanvas} />
-          <StageSection 
-            addedItems={addedItems} 
-            setAddedItems={setAddedItems} 
-            ref={stageRef}
-          />
-        </div>
-        <ItemTab 
+        {/* <div className="container"> */}
+        <StageSection
+          addedItems={addedItems}
+          setAddedItems={setAddedItems}
+          ref={stageRef}
+        />
+        <ItemTab
           onPreviewClick={() => setShowPreview(true)}
           onUploadImage={handleUploadImage}
         />
+        {/* </div> */}
       </main>
 
-      <PreviewModal 
-        isOpen={showPreview} 
+      <IconSection onAddToCanvas={handleAddToCanvas} />
+
+      <PreviewModal
+        isOpen={showPreview}
         onClose={() => setShowPreview(false)}
         stageRef={stageRef}
       />

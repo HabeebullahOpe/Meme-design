@@ -2,40 +2,40 @@ import React, { useRef, useState, useEffect } from 'react';
 import styles from './IconSection.module.css';
 
 const IconSection = ({ onAddToCanvas }) => {
-  const [currentWidth, setCurrentWidth] = useState(80);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
-  const scrollContainerRef = useRef(null);
+  // const [currentWidth, setCurrentWidth] = useState(80);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
+  // const scrollContainerRef = useRef(null);
 
   const memeIcons = Array(15).fill().map((_, i) => ({
     id: `icon-${i}`,
     src: `/assets/icons/meme${(i % 4) + 1}.png`
   }));
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 400);
-      if (window.innerWidth >= 400) setCurrentWidth(80);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 400);
+  //     if (window.innerWidth >= 400) setCurrentWidth(80);
+  //   };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
-  const handleRightClick = () => {
-    if (currentWidth < 160) setCurrentWidth(currentWidth + 80);
-  };
+  // const handleRightClick = () => {
+  //   if (currentWidth < 160) setCurrentWidth(currentWidth + 80);
+  // };
 
-  const handleLeftClick = () => {
-    if (currentWidth > 80) setCurrentWidth(currentWidth - 80);
-  };
+  // const handleLeftClick = () => {
+  //   if (currentWidth > 80) setCurrentWidth(currentWidth - 80);
+  // };
 
-  const scrollUp = () => {
-    scrollContainerRef.current?.scrollBy({ top: -100, behavior: 'smooth' });
-  };
+  // const scrollUp = () => {
+  //   scrollContainerRef.current?.scrollBy({ top: -100, behavior: 'smooth' });
+  // };
 
-  const scrollDown = () => {
-    scrollContainerRef.current?.scrollBy({ top: 100, behavior: 'smooth' });
-  };
+  // const scrollDown = () => {
+  //   scrollContainerRef.current?.scrollBy({ top: 100, behavior: 'smooth' });
+  // };
 
   const handleDragStart = (e, icon) => {
     e.dataTransfer.setData('text/plain', JSON.stringify(icon));
@@ -45,9 +45,9 @@ const IconSection = ({ onAddToCanvas }) => {
   return (
     <div 
       className={styles.iconSection} 
-      style={{ width: isMobile ? `${currentWidth}px` : '80px' }}
+      // style={{ width: isMobile ? `${currentWidth}px` : '80px' }}
     >
-      {isMobile && (
+      {/* {isMobile && (
         <div className={styles.iconControl}>
           <span 
             onClick={handleLeftClick} 
@@ -62,9 +62,9 @@ const IconSection = ({ onAddToCanvas }) => {
             <img src="/assets/tabs/right.png" alt="right" />
           </span>
         </div>
-      )}
+      )} */}
 
-      {!isMobile && (
+      {/* {!isMobile && (
         <>
           <button 
             className={`${styles.scrollButton} ${styles.scrollUp}`}
@@ -83,12 +83,13 @@ const IconSection = ({ onAddToCanvas }) => {
             </div>
           </button>
         </>
-      )}
+      )} */}
 
       <div 
         className={styles.iconListContainer}
-        ref={scrollContainerRef}
+        // ref={scrollContainerRef}
       >
+        <div className={styles.drag}></div>
         <ul>
           {memeIcons.map((icon) => (
             <li 
