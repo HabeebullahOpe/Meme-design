@@ -2,11 +2,12 @@
 .iconSection {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: blue;
+    display: none;
 }
 
 /* Icon list container */
@@ -17,8 +18,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    max-width: 500px;
-    border-radius: 20px 20px 0 0;;
+    max-width: 550px;
+    border-radius: 20px 20px 0 0;
     background-color: blueviolet;
 }
 
@@ -33,9 +34,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px;
+    /* gap: 5px; */
     height: 100%;
-    background-color: gold;
+    /* background-color: gold; */
 }
 
 .iconListContainer ul li {
@@ -43,6 +44,7 @@
     height: 80px;
     padding: 5px;
     border-radius: 5px;
+    margin: 3px;
     background: var(--background-color);
 }
  

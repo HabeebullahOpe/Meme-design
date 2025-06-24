@@ -36,16 +36,9 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
     }));
   };
 
-  // Fixed transform handler - prevents snap back
+  // Handle transform end
   const handleTransformEnd = (e, id) => {
     const node = e.target;
-    const scaleX = node.scaleX();
-    const scaleY = node.scaleY();
-    
-    // Calculate absolute dimensions
-    const newWidth = Math.max(20, node.width() * scaleX);
-    const newHeight = Math.max(20, node.height() * scaleY);
-    
     setAddedItems(prev => prev.map(item => {
       if (item.id === id) {
         return {
@@ -53,23 +46,19 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
           x: node.x(),
           y: node.y(),
           rotation: node.rotation(),
-          width: newWidth,
-          height: newHeight,
-          scaleX: 1, // Reset scale in state
-          scaleY: 1  // Reset scale in state
+          width: Math.max(20, node.width() * node.scaleX()),
+          height: Math.max(20, node.height() * node.scaleY()),
+          scaleX: 1,
+          scaleY: 1
         };
       }
       return item;
     }));
-
-    // Immediately update the visual node
-    node.width(newWidth);
-    node.height(newHeight);
     node.scaleX(1);
     node.scaleY(1);
   };
 
-  // Responsive scaling with aspect ratio
+  // Responsive scaling
   useEffect(() => {
     const updateSize = () => {
       if (!containerRef.current) return;
@@ -77,7 +66,7 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
       const containerWidth = containerRef.current.clientWidth;
       const containerHeight = containerRef.current.clientHeight;
 
-      // Calculate scale while maintaining aspect ratio
+      // Calculate scale to fit while maintaining aspect ratio
       const widthScale = containerWidth / PORTRAIT_SIZE.width;
       const heightScale = containerHeight / PORTRAIT_SIZE.height;
       const scale = Math.min(widthScale, heightScale) * 0.95; // 5% padding
@@ -110,8 +99,7 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: '#f0f0f0'
-        backgroundColor: 'orange'
+        backgroundColor: '#f0f0f0' // Optional: Container background
       }}
     >
       <Stage
@@ -120,8 +108,8 @@ const StageSection = forwardRef(({ addedItems, setAddedItems }, ref) => {
         height={scaledSize.height}
         onMouseDown={handleSelect}
         style={{
-          backgroundColor: 'dodgerblue',
-          boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)'
+          backgroundColor: '#ffffff',
+          boxShadow: '0 0 15px rgba(0,0,0,0.1)'
         }}
       >
         <Layer>

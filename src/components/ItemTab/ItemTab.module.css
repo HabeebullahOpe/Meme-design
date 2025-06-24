@@ -1,7 +1,10 @@
 /* src/components/ItemTab/ItemTab.module.css */
 .itemTab {
+    position: absolute;
+    bottom: 0;
     width: 100%;
     background-color: rebeccapurple;
+    
 }
 
 .itemTab ul {
@@ -27,5 +30,5 @@
 }
 
 .itemTab ul li img {
-    width: 32px;
+    width: 20px;
 }

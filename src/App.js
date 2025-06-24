@@ -38,8 +38,8 @@ function App() {
 
   return (
     <ThemeProvider>
+      
       <main>
-        {/* <div className="container"> */}
         <StageSection
           addedItems={addedItems}
           setAddedItems={setAddedItems}
@@ -49,7 +49,6 @@ function App() {
           onPreviewClick={() => setShowPreview(true)}
           onUploadImage={handleUploadImage}
         />
-        {/* </div> */}
       </main>
 
       <IconSection onAddToCanvas={handleAddToCanvas} />
