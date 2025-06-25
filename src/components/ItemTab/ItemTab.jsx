@@ -1,18 +1,22 @@
-import React, { useRef } from 'react';
-import styles from './ItemTab.module.css';
+import React, { useRef } from "react";
+import styles from "./ItemTab.module.css";
 
-const ItemTab = ({ onPreviewClick, onUploadImage }) => {
+const ItemTab = ({ onPreviewClick, onUploadImage, setShowIcons }) => {
   const fileInputRef = useRef(null);
   const tabItems = [
-    { img: 'text (1).png', className: 'toggleArt' },
-    { 
-      img: 'image (2).png', 
-      onClick: () => fileInputRef.current.click() // Trigger file input
+    {
+      img: "text (1).png",
+      className: "toggleArt",
+      onClick: () => setShowIcons((prev) => !prev),
     },
-    { img: 'backward.png' },
-    { img: 'forward.png' },
-    { img: 'clean.png' },
-    { img: 'gallery.png', id: 'openPreview', onClick: onPreviewClick }
+    {
+      img: "image (2).png",
+      onClick: () => fileInputRef.current.click(), // Trigger file input
+    },
+    { img: "backward.png" },
+    { img: "forward.png" },
+    { img: "clean.png" },
+    { img: "gallery.png", id: "openPreview", onClick: onPreviewClick },
   ];
 
   const handleImageUpload = (e) => {
@@ -30,11 +34,11 @@ const ItemTab = ({ onPreviewClick, onUploadImage }) => {
         height: 200,
         rotation: 0,
         scaleX: 1,
-        scaleY: 1
+        scaleY: 1,
       });
     };
     reader.readAsDataURL(file);
-    e.target.value = ''; // Reset input
+    e.target.value = ""; // Reset input
   };
 
   return (
@@ -45,14 +49,14 @@ const ItemTab = ({ onPreviewClick, onUploadImage }) => {
         ref={fileInputRef}
         onChange={handleImageUpload}
         accept="image/*"
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
       />
-      
+
       <ul>
         {tabItems.map((item, index) => (
-          <li 
+          <li
             key={index}
-            className={item.className ? styles[item.className] : ''}
+            className={item.className ? styles[item.className] : ""}
             onClick={item.onClick}
           >
             <img src={`/assets/tabs/${item.img}`} alt="" />

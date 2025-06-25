@@ -11,6 +11,7 @@ import "./App.css";
 function App() {
   const [showPreview, setShowPreview] = useState(false);
   const [addedItems, setAddedItems] = useState([]);
+  const [showIcons, setShowIcons] = useState(false);
   const stageRef = useRef(null);
 
   // Add template image
@@ -38,7 +39,6 @@ function App() {
 
   return (
     <ThemeProvider>
-      
       <main>
         <StageSection
           addedItems={addedItems}
@@ -48,10 +48,15 @@ function App() {
         <ItemTab
           onPreviewClick={() => setShowPreview(true)}
           onUploadImage={handleUploadImage}
+          setShowIcons={setShowIcons}
         />
       </main>
 
-      <IconSection onAddToCanvas={handleAddToCanvas} />
+      <IconSection
+        onAddToCanvas={handleAddToCanvas}
+        showIcons={showIcons}
+        setShowIcons={setShowIcons}
+      />
 
       <PreviewModal
         isOpen={showPreview}

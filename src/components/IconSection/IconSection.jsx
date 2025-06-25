@@ -1,15 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react';
-import styles from './IconSection.module.css';
+import React, { useRef, useState, useEffect } from "react";
+import styles from "./IconSection.module.css";
 
-const IconSection = ({ onAddToCanvas }) => {
+const IconSection = ({ onAddToCanvas, showIcons, setShowIcons }) => {
   // const [currentWidth, setCurrentWidth] = useState(80);
   // const [isMobile, setIsMobile] = useState(window.innerWidth < 400);
   // const scrollContainerRef = useRef(null);
 
-  const memeIcons = Array(15).fill().map((_, i) => ({
-    id: `icon-${i}`,
-    src: `/assets/icons/meme${(i % 4) + 1}.png`
-  }));
+  const memeIcons = Array(15)
+    .fill()
+    .map((_, i) => ({
+      id: `icon-${i}`,
+      src: `/assets/icons/meme${(i % 4) + 1}.png`,
+    }));
 
   // useEffect(() => {
   //   const handleResize = () => {
@@ -38,15 +40,12 @@ const IconSection = ({ onAddToCanvas }) => {
   // };
 
   const handleDragStart = (e, icon) => {
-    e.dataTransfer.setData('text/plain', JSON.stringify(icon));
-    e.dataTransfer.effectAllowed = 'copy';
+    e.dataTransfer.setData("text/plain", JSON.stringify(icon));
+    e.dataTransfer.effectAllowed = "copy";
   };
 
   return (
-    <div 
-      className={styles.iconSection} 
-      // style={{ width: isMobile ? `${currentWidth}px` : '80px' }}
-    >
+    <div className={`${styles.iconSection} ${showIcons ? styles.slideIn : ""}`}>
       {/* {isMobile && (
         <div className={styles.iconControl}>
           <span 
@@ -85,18 +84,21 @@ const IconSection = ({ onAddToCanvas }) => {
         </>
       )} */}
 
-      <div 
+      <div
         className={styles.iconListContainer}
         // ref={scrollContainerRef}
       >
         <div className={styles.drag}></div>
         <ul>
           {memeIcons.map((icon) => (
-            <li 
+            <li
               key={icon.id}
               draggable
               onDragStart={(e) => handleDragStart(e, icon)}
-              onClick={() => onAddToCanvas(icon)}
+              onClick={() => {
+                onAddToCanvas(icon);
+                setShowIcons(false);
+              }}
             >
               <img src={icon.src} alt={`Meme ${icon.id}`} />
             </li>
