@@ -1,7 +1,14 @@
 import React, { useRef } from "react";
 import styles from "./ItemTab.module.css";
 
-const ItemTab = ({ onPreviewClick, onUploadImage, setShowIcons }) => {
+const ItemTab = ({
+  onPreviewClick,
+  onUploadImage,
+  setShowIcons,
+  undo,
+  redo,
+  deleteSelected,
+}) => {
   const fileInputRef = useRef(null);
   const tabItems = [
     {
@@ -11,12 +18,16 @@ const ItemTab = ({ onPreviewClick, onUploadImage, setShowIcons }) => {
     },
     {
       img: "image (2).png",
-      onClick: () => fileInputRef.current.click(), // Trigger file input
+      onClick: () => fileInputRef.current.click(),
     },
-    { img: "backward.png" },
-    { img: "forward.png" },
-    { img: "clean.png" },
-    { img: "gallery.png", id: "openPreview", onClick: onPreviewClick },
+    { img: "backward.png", onClick: undo },
+    { img: "forward.png", onClick: redo },
+    { img: "clean.png", onClick: deleteSelected },
+    {
+      img: "gallery.png",
+      id: "openPreview",
+      onClick: onPreviewClick,
+    },
   ];
 
   const handleImageUpload = (e) => {

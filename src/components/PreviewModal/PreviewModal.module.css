@@ -21,13 +21,14 @@
     align-items: center;
     padding: 10px;
     border-radius: 10px;
-    background: var(--white);
+    background: var(--mid);
 }
 
 .imgPreview img {
     width: 250px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
 }
 
 .previewNav ul {

@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useRef } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import IconSection from "./components/IconSection/IconSection";
@@ -11,30 +12,59 @@ import "./App.css";
 function App() {
   const [showPreview, setShowPreview] = useState(false);
   const [addedItems, setAddedItems] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
   const [showIcons, setShowIcons] = useState(false);
   const stageRef = useRef(null);
 
-  // Add template image
-  const handleAddToCanvas = (icon) => {
-    setAddedItems((prev) => [
-      ...prev,
-      {
-        ...icon,
-        id: `item-${Date.now()}`,
-        x: 50,
-        y: 50,
-        width: 100,
-        height: 100,
-        rotation: 0,
-        scaleX: 1,
-        scaleY: 1,
-      },
-    ]);
+  const updateItems = (newItems) => {
+    setHistory((prev) => [...prev, addedItems]);
+    setAddedItems(newItems);
+    setRedoStack([]);
   };
 
-  // Handle uploaded images
+  const handleAddToCanvas = (icon) => {
+    const newItem = {
+      ...icon,
+      id: `item-${Date.now()}`,
+      x: 50,
+      y: 50,
+      width: 100,
+      height: 100,
+      rotation: 0,
+      scaleX: 1,
+      scaleY: 1,
+    };
+    updateItems([...addedItems, newItem]);
+  };
+
   const handleUploadImage = (newImage) => {
-    setAddedItems((prev) => [...prev, newImage]);
+    updateItems([...addedItems, newImage]);
+  };
+
+  const undo = () => {
+    if (history.length === 0) return;
+    const prev = history[history.length - 1];
+    setRedoStack((r) => [addedItems, ...r]);
+    setHistory((h) => h.slice(0, -1));
+    setAddedItems(prev);
+    setSelectedId(null);
+  };
+
+  const redo = () => {
+    if (redoStack.length === 0) return;
+    const next = redoStack[0];
+    setHistory((h) => [...h, addedItems]);
+    setRedoStack((r) => r.slice(1));
+    setAddedItems(next);
+    setSelectedId(null);
+  };
+
+  const deleteSelected = () => {
+    if (!selectedId) return;
+    updateItems(addedItems.filter((item) => item.id !== selectedId));
+    setSelectedId(null);
   };
 
   return (
@@ -42,13 +72,18 @@ function App() {
       <main>
         <StageSection
           addedItems={addedItems}
-          setAddedItems={setAddedItems}
+          setAddedItems={updateItems}
+          selectedId={selectedId}
+          setSelectedId={setSelectedId}
           ref={stageRef}
         />
         <ItemTab
           onPreviewClick={() => setShowPreview(true)}
           onUploadImage={handleUploadImage}
           setShowIcons={setShowIcons}
+          undo={undo}
+          redo={redo}
+          deleteSelected={deleteSelected}
         />
       </main>
 
