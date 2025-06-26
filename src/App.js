@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import IconSection from "./components/IconSection/IconSection";
 import StageSection from "./components/StageSection/StageSection";
@@ -17,6 +17,23 @@ function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [showIcons, setShowIcons] = useState(false);
   const stageRef = useRef(null);
+  const iconRef = useRef(null);
+
+  useEffect(() => {
+  const handleOutside = (e) => {
+    if (iconRef.current && !iconRef.current.contains(e.target)) {
+      setShowIcons(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutside);   // Desktop
+  document.addEventListener("touchstart", handleOutside); // Mobile
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutside);
+    document.removeEventListener("touchstart", handleOutside);
+  };
+}, []);
 
   const updateItems = (newItems) => {
     setHistory((prev) => [...prev, addedItems]);
@@ -91,6 +108,8 @@ function App() {
         onAddToCanvas={handleAddToCanvas}
         showIcons={showIcons}
         setShowIcons={setShowIcons}
+        ref={iconRef}
+
       />
 
       <PreviewModal

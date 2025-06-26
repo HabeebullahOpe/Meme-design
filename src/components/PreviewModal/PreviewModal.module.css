@@ -28,7 +28,6 @@
     width: 250px;
     height: auto;
     border-radius: 5px;
-    border: 1px solid #000;
 }
 
 .previewNav ul {
@@ -44,7 +43,7 @@
     height: 50px;
     padding: 10px;
     border-radius: 50%;
-    background-color: var(--background-color);
+    background-color: var(--white);
     cursor: pointer;
     transition: transform 0.2s;
 }

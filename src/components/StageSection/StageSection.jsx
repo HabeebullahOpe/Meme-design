@@ -131,7 +131,7 @@ const StageSection = forwardRef(
             <Rect
               width={scaledSize.width}
               height={scaledSize.height}
-              fill="transparent"
+              fill="#ffffff"
               perfectDrawEnabled={false}
               listening={false}
             />
