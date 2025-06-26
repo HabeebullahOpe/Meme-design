@@ -18,47 +18,50 @@
 
 /* Icon list container */
 .iconListContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    max-width: 600px;
-    height: 100%;
-    border-radius: 20px 20px 0 0;
-    background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  max-width: 650px;
+  min-width: 500px;
+  height: 100%;
+  border-radius: 10px 10px 0 0;
+  background-color: var(--white);
 }
 
-.iconSection .iconListContainer .drag{
-    width: 60px;
-    padding: 5px;
-    border-radius: 20px;
-    background-color: green;
+.iconSection .iconListContainer .drag {
+  width: 60px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: var(--mid);
 }
 
 .iconListContainer ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* gap: 5px; */
-    height: 100%;
-    /* background-color: gold; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  height: 100%;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
 }
 
 .iconListContainer ul li {
-    width: 80px;
-    height: 80px;
-    padding: 5px;
-    border-radius: 5px;
-    margin: 3px;
-    background: var(--background-color);
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+  border-radius: 5px;
+  /* margin: 3px; */
+  background: var(--mid);
 }
- 
+
 .iconListContainer ul li img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .hidden {
@@ -69,4 +72,14 @@
   height: auto;
   max-height: 70%; /* or however tall you want it to grow */
   transition: max-height 0.3s ease-in-out;
+}
+
+@media (max-width: 760px) {
+  .iconSection {
+    width: 100%;
+  }
+  .iconListContainer {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }

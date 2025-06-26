@@ -11,13 +11,11 @@
 body {
     /* position: relative; */
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: gold;
+    background-color: var(--mid);
 }
 
 main {
